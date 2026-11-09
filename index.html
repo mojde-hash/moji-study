@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#8069D9" />
+  <meta name="description" content="MOJI STUDY — فضای شخصی و بازی‌وار برای برنامه‌ریزی، ثبت مطالعه و مرور فلش‌کارت‌ها" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+  <title>MOJI STUDY | همراه کوچولوی درس خوندنت</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-mark">M</div><div><div class="brand-name">MOJI STUDY</div><div class="brand-sub">little steps, big dreams ✦</div></div></div>
+    <div class="nav-label">فضای مطالعه من</div>
+    <nav class="nav" id="sideNav">
+      <button class="active" data-page="home"><span class="ico">⌂</span>داشبورد</button>
+      <button data-page="planner"><span class="ico">▦</span>برنامه‌ریز</button>
+      <button data-page="library"><span class="ico">▤</span>کتابخانه من</button>
+      <button data-page="ai"><span class="ico">✧</span>استودیوی هوش مصنوعی</button>
+      <button data-page="flashcards"><span class="ico">▣</span>اتاق فلش‌کارت</button>
+      <button data-page="progress"><span class="ico">▥</span>گزارش پیشرفت</button>
+      <button data-page="settings"><span class="ico">⚙</span>تنظیمات</button>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="streak-card"><div>🔥 <strong id="streakSide">۰ روز پشت سر هم</strong></div><p>هر روز حتی یک قدم کوچیک بردار!</p></div>
+      <div class="profile"><div class="avatar">🌷</div><div><strong id="profileName">دانشجوی پرتلاش</strong><small>مسیر موفقیت از همین‌جا شروع می‌شه</small></div></div>
+    </div>
+  </aside>
+  <main class="main">
+    <header class="topbar">
+      <div class="hello"><h1 id="topGreeting">سلام، قهرمان امروز! ✨</h1><p id="todayLabel">امروز روز خوبیه برای یک قدم تازه.</p></div>
+      <div class="top-actions"><div class="date-pill" id="datePill">📅 امروز</div><button class="icon-btn" title="تنظیمات" data-go="settings">⚙</button></div>
+    </header>
+
+    <section class="page active" id="page-home">
+      <div class="welcome card"><div class="welcome-copy"><h2>قدم‌های کوچیک، نتیجه‌های بزرگ! 🌱</h2><p>قرار نیست هر روز عالی باشی؛ فقط کافیه ادامه بدی.<br>بیا ببینیم امروز چقدر پیشرفت می‌کنیم.</p><div class="exam-countdown" id="examCountdown">تاریخ هدفت رو در تنظیمات وارد کن ✨</div><button class="btn btn-primary btn-sm" data-go="planner">دیدن برنامه امروز ←</button></div><div class="mascot-wrap"><div class="mascot-fallback" id="mascotFallback">🌷</div><img class="mascot-image" id="homeMascot" alt="شخصیت MOJI" hidden></div></div>
+      <div class="grid stats">
+        <div class="stat"><div class="stat-top"><span>مطالعه امروز</span><span class="stat-icon bg-lav">⏱</span></div><strong id="statStudy">۰:۰۰</strong><small>زمان مفید مطالعه</small></div>
+        <div class="stat"><div class="stat-top"><span>هدف روزانه</span><span class="stat-icon bg-yellow">🎯</span></div><strong id="statGoal">۰٪</strong><small id="goalCaption">از هدف امروز</small></div>
+        <div class="stat"><div class="stat-top"><span>روزهای پیوسته</span><span class="stat-icon bg-pink">🔥</span></div><strong id="statStreak">۰</strong><small>زنجیره تلاش تو</small></div>
+        <div class="stat"><div class="stat-top"><span>مرورهای امروز</span><span class="stat-icon bg-mint">🧠</span></div><strong id="statDue">۰</strong><small>فلش‌کارت آماده مرور</small></div>
+      </div>
+      <div class="grid dash-grid">
+        <div class="grid" style="gap:16px">
+          <div class="card timer-card">
+            <div class="card-title"><h3>⏳ تایمر تمرکز</h3><span id="timerStatus">آماده‌ای؟</span></div>
+            <div class="mode-switch"><button class="active" data-mode="study">مطالعه</button><button data-mode="break">استراحت کوتاه</button><button data-mode="longbreak">استراحت بلند</button></div>
+            <div class="timer-subject"><input id="timerSubject" placeholder="الان مشغول مطالعه چه درسی هستی؟" aria-label="درس جلسه"></div>
+            <div class="timer-display"><div class="timer-mode" id="timerModeLabel">زمان برای تمرکز روی هدفت</div><div class="timer-time" id="timerDisplay">25:00</div></div>
+            <div class="timer-actions"><button class="btn btn-primary" id="timerToggle">▶ شروع</button><button class="btn btn-soft" id="timerFinish">✓ پایان و ثبت</button><button class="btn btn-outline" id="timerReset">↺ بازنشانی</button></div>
+            <div class="progress-wrap"><div class="progress-meta"><span>پیشرفت هدف روزانه</span><span id="timerProgressText">۰ از ۰ دقیقه</span></div><div class="progress"><span id="timerProgress" style="width:0%"></span></div></div>
+          </div>
+          <div class="card"><div class="card-title"><h3>📈 روند مطالعه این هفته</h3><span>ساعت مطالعه روزانه</span></div><div class="week-chart" id="weekChart"></div></div>
+        </div>
+        <div class="grid" style="gap:16px;align-content:start">
+          <div class="card"><div class="card-title"><h3>📌 برنامه امروز</h3><button class="btn btn-soft btn-sm" data-go="planner">همه برنامه‌ها</button></div><div class="task-list" id="todayTasks"></div></div>
+          <div class="card"><div class="card-title"><h3>💜 مرور هوشمند</h3><span>وقتشه یادت بیاد</span></div><div id="reviewTeaser" class="empty"><span class="empty-icon">🪄</span>هنوز فلش‌کارتی برای مرور نداری.<br>از کتابخانه‌ات شروع کن!</div><button class="btn btn-soft" style="width:100%;margin-top:10px" data-go="flashcards">رفتن به اتاق مرور ←</button></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="page-planner">
+      <div class="page-heading"><div><h2>برنامه‌ریز من 🗓️</h2><p>برای زمانت برنامه بچین، اما به خودت هم فرصت نفس کشیدن بده.</p></div><button class="btn btn-primary" id="addPlanBtn">＋ برنامه جدید</button></div>
+      <div class="grid planner-layout">
+        <div class="card"><div class="card-title"><h3>برنامه مطالعه</h3><div class="segmented"><button class="active" data-filter="week">هفته</button><button data-filter="month">ماه</button><button data-filter="all">همه</button></div></div>
+          <div class="calendar-toolbar"><button class="icon-btn" id="calendarPrev" aria-label="بازه قبل">‹</button><strong id="calendarLabel">این هفته</strong><button class="icon-btn" id="calendarNext" aria-label="بازه بعد">›</button><button class="btn btn-soft btn-sm" id="calendarToday">امروز</button></div>
+          <div class="calendar-grid" id="calendarGrid"></div>
+          <div class="selected-day-label" id="selectedDayLabel">برنامه‌های این هفته</div>
+          <div class="list-stack" id="plannerList"></div></div>
+        <div class="card"><div class="card-title"><h3>🎯 هدف روزانه</h3><span>قابل تغییر</span></div><div class="field"><label>چند ساعت مطالعه در روز؟</label><input id="goalInput" type="number" min="1" max="16" step="0.5" value="4"></div><button class="btn btn-primary" id="saveGoal" style="width:100%;margin-top:12px">ذخیره هدف</button><div class="progress-wrap" style="margin-top:20px"><div class="progress-meta"><span>هدف امروز</span><strong id="goalSideText">۰٪</strong></div><div class="progress"><span id="goalSideBar" style="width:0%"></span></div></div><div class="notice" style="margin-top:17px">💡 پیشنهاد MOJI: برنامه‌ات رو به بازه‌های کوتاه و قابل انجام تقسیم کن. استمرار از فشار آوردن به خودت مهم‌تره.</div></div>
+      </div>
+    </section>
+
+    <section class="page" id="page-library">
+      <div class="page-heading"><div><h2>کتابخانه من 📚</h2><p>همه جزوه‌ها و منابع درسی‌ات، یک‌جا و مرتب.</p></div><button class="btn btn-primary" id="uploadBtn">＋ افزودن فایل</button></div>
+      <div class="card upload-zone" id="dropZone"><div class="upload-icon">📂</div><strong>جزوه‌ات رو اینجا بنداز!</strong><p>فایل PDF، تصویر، Word یا متن رو انتخاب کن. فایل‌ها فعلاً روی همین دستگاه ذخیره می‌شن.</p><button class="btn btn-soft btn-sm" id="chooseFiles">انتخاب فایل‌ها</button><input type="file" id="fileInput" class="hidden" multiple accept=".pdf,.png,.jpg,.jpeg,.webp,.txt,.md,.doc,.docx" /></div>
+      <div class="card" style="margin-top:16px"><div class="card-title"><h3>فایل‌های من</h3><span id="fileCount">۰ فایل</span></div><div class="grid library-grid" id="libraryList"></div></div>
+    </section>
+
+    <section class="page" id="page-ai">
+      <div class="page-heading"><div><h2>AI Studio ✨</h2><p>جزوه‌ات رو به یک تجربه یادگیری فعال تبدیل کن.</p></div><span class="btn btn-soft btn-sm">نسخه اولیه</span></div>
+      <div class="card ai-banner"><div class="ai-orb">🪄</div><div><h3>از جزوه تا فلش‌کارت، با کمک هوش مصنوعی</h3><p>فایل رو انتخاب کن، متنش رو برای ساخت کارت آماده کن و خروجی JSON رو به MOJI وارد کن.</p></div></div>
+      <div class="notice" style="margin-bottom:16px">نکته شفاف: اتصال مستقیم مدل هوش مصنوعی هنوز فعال نیست. در این نسخه، MOJI متن منبع را آماده می‌کند تا در ChatGPT فلش‌کارت بسازی و خروجی را همین‌جا وارد کنی. برای اتصال خودکار داخل اپ، بعداً باید API امن اضافه شود.</div>
+      <div class="grid planner-layout">
+        <div class="card"><div class="card-title"><h3>۱. انتخاب منبع</h3><span>از کتابخانه</span></div><div class="field"><label>فایل درسی</label><select id="aiFileSelect"><option value="">انتخاب فایل...</option></select></div><div class="field" style="margin-top:12px"><label>نام درس یا مبحث (اختیاری)</label><input id="aiTopic" placeholder="مثلاً تنظیم شرایط محیطی - تابش" /></div><div class="field" style="margin-top:12px"><label>سطح کارت‌ها</label><select id="aiLevel"><option>ترکیبی و جامع</option><option>مقدماتی</option><option>متوسط</option><option>پیشرفته و کنکوری</option></select></div><button class="btn btn-primary" id="makePrompt" style="width:100%;margin-top:15px">ساخت دستور تولید فلش‌کارت ✨</button><div id="aiPromptStatus" class="small muted" style="margin-top:9px"></div></div>
+        <div class="card"><div class="card-title"><h3>۲. وارد کردن خروجی</h3><span>JSON</span></div><p class="small muted" style="line-height:1.9;margin-top:0">خروجی JSON کارت‌هایی که از ChatGPT گرفتی اینجا قرار بده. MOJI آن‌ها را به یک دسته جدید اضافه می‌کند.</p><div class="field"><label>نام دسته</label><input id="importDeckName" placeholder="مثلاً فصل اول - انتقال حرارت" /></div><div class="field" style="margin-top:12px"><label>متن JSON</label><textarea id="importJson" placeholder='{"schema_version":1,"deck":{"title":"نام دسته"},"cards":[{"front":"سؤال؟","back":"پاسخ"}]}'></textarea></div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><label class="btn btn-outline btn-sm" for="flashJsonFile">انتخاب فایل JSON</label><input id="flashJsonFile" type="file" accept="application/json,.json" class="hidden"><button class="btn btn-primary btn-sm" id="importCards">وارد کردن فلش‌کارت‌ها</button></div></div>
+      </div>
+    </section>
+
+    <section class="page" id="page-flashcards">
+      <div class="page-heading"><div><h2>اتاق فلش‌کارت 🧠</h2><p>یادگیری با یادآوری؛ نه فقط دوباره‌خوانی.</p></div><button class="btn btn-primary" id="addCardBtn">＋ کارت جدید</button></div>
+      <div class="grid flash-stats">
+        <div class="stat"><div class="stat-top"><span>کل کارت‌ها</span><span class="stat-icon bg-lav">▣</span></div><strong id="flashTotal">۰</strong><small>در تمام دسته‌ها</small></div>
+        <div class="stat"><div class="stat-top"><span>آماده مرور</span><span class="stat-icon bg-yellow">🔔</span></div><strong id="flashDue">۰</strong><small>امروز و عقب‌افتاده</small></div>
+        <div class="stat"><div class="stat-top"><span>یادگرفته‌شده</span><span class="stat-icon bg-mint">✓</span></div><strong id="flashKnown">۰</strong><small>کارت‌هایی که بلدی</small></div>
+      </div>
+      <div class="grid planner-layout">
+        <div class="card"><div class="card-title"><h3>🎴 مرور کارت‌ها</h3><span id="reviewCount">۰ کارت برای مرور</span></div><div id="reviewArea"><div class="empty"><span class="empty-icon">🌟</span>هنوز کارتی برای مرور وجود نداره.<br>یک کارت بساز یا از AI Studio وارد کن.</div></div></div>
+        <div class="card"><div class="card-title"><h3>دسته‌های من</h3><span id="deckCount">۰ دسته</span></div><div class="list-stack" id="deckList"></div></div>
+      </div>
+    </section>
+
+    <section class="page" id="page-progress">
+      <div class="page-heading"><div><h2>گزارش پیشرفت من 📈</h2><p>پیشرفت واقعی تو، از روی جلسه‌هایی که ثبت کردی.</p></div><span class="btn btn-soft btn-sm">آمار شخصی</span></div>
+      <div class="grid stats progress-stats">
+        <div class="stat"><div class="stat-top"><span>مطالعه این هفته</span><span class="stat-icon bg-lav">⏱</span></div><strong id="progressWeekStudy">۰</strong><small>دقیقه مطالعه</small></div>
+        <div class="stat"><div class="stat-top"><span>استراحت این هفته</span><span class="stat-icon bg-yellow">☕</span></div><strong id="progressWeekBreak">۰</strong><small>دقیقه استراحت</small></div>
+        <div class="stat"><div class="stat-top"><span>جلسه‌های کامل</span><span class="stat-icon bg-mint">✓</span></div><strong id="progressSessions">۰</strong><small>جلسه ثبت‌شده</small></div>
+        <div class="stat"><div class="stat-top"><span>مرور کارت‌ها</span><span class="stat-icon bg-pink">🧠</span></div><strong id="progressReviews">۰</strong><small>مرور در این هفته</small></div>
+      </div>
+      <div class="grid planner-layout">
+        <div class="card"><div class="card-title"><h3>روند مطالعه در ۷ روز اخیر</h3><span>بر اساس تایمر</span></div><div class="week-chart" id="progressWeekChart"></div></div>
+        <div class="card"><div class="card-title"><h3>خلاصه این ماه</h3><span>تا امروز</span></div><div class="monthly-summary"><div><small>مجموع مطالعه</small><strong id="progressMonthStudy">۰ دقیقه</strong></div><div><small>میانگین روزانه</small><strong id="progressAverage">۰ دقیقه</strong></div><div><small>بهترین روز</small><strong id="progressBestDay">—</strong></div></div></div>
+      </div>
+      <div class="grid planner-layout" style="margin-top:16px">
+        <div class="card"><div class="card-title"><h3>تقسیم زمان بین درس‌ها</h3><span>این ماه</span></div><div id="subjectBars" class="subject-bars"></div></div>
+        <div class="card"><div class="card-title"><h3>آخرین جلسه‌ها</h3><span>تاریخچه ثبت‌شده</span></div><div id="recentSessions" class="list-stack"></div></div>
+      </div>
+    </section>
+
+    <section class="page" id="page-settings">
+      <div class="page-heading"><div><h2>تنظیمات ⚙️</h2><p>MOJI رو مطابق سبک خودت تنظیم کن.</p></div></div>
+      <div class="card"><div class="settings-row"><div><strong>نام نمایشی</strong><small>اسمی که MOJI باهاش بهت خوش‌آمد می‌گه.</small></div><div style="display:flex;gap:7px"><input id="nameInput" style="width:135px;border:1px solid var(--line);border-radius:10px;padding:8px" placeholder="نام من"/><button class="btn btn-soft btn-sm" id="saveName">ذخیره</button></div></div><div class="settings-row"><div><strong>تاریخ آزمون / کنکور</strong><small>برای نمایش شمارش معکوس در داشبورد.</small></div><div style="display:flex;gap:7px"><input id="examDate" type="date" style="border:1px solid var(--line);border-radius:10px;padding:8px"/><button class="btn btn-soft btn-sm" id="saveExam">ذخیره</button></div></div><div class="settings-row"><div><strong>پشتیبان‌گیری از اطلاعات</strong><small>خروجی برنامه‌ها، آمار و فلش‌کارت‌ها را نگه دار.</small></div><button class="btn btn-primary btn-sm" id="exportBackup">دانلود پشتیبان</button></div><div class="settings-row"><div><strong>بازیابی اطلاعات</strong><small>فایل پشتیبان MOJI را وارد کن.</small></div><label class="btn btn-outline btn-sm" for="restoreInput">انتخاب فایل<input id="restoreInput" type="file" accept="application/json" class="hidden"/></label></div><div class="settings-row"><div><strong>پاک‌سازی اطلاعات</strong><small>این کار اطلاعات ذخیره‌شده روی همین دستگاه را حذف می‌کند.</small></div><button class="btn btn-danger btn-sm" id="clearData">پاک کردن داده‌ها</button></div></div>
+      <div class="card" style="margin-top:16px"><div class="card-title"><h3>⏳ تنظیمات تایمر</h3><span>قابل شخصی‌سازی</span></div><div class="form-grid"><div class="field"><label>مدت مطالعه (دقیقه)</label><input id="focusMinutes" type="number" min="5" max="180" value="25"></div><div class="field"><label>استراحت کوتاه (دقیقه)</label><input id="shortBreakMinutes" type="number" min="1" max="60" value="5"></div><div class="field"><label>استراحت بلند (دقیقه)</label><input id="longBreakMinutes" type="number" min="5" max="90" value="15"></div><div class="field"><label>فاصله استراحت بلند (هر چند جلسه؟)</label><input id="longBreakEvery" type="number" min="2" max="8" value="4"></div></div><button class="btn btn-primary" id="saveTimerSettings" style="margin-top:12px">ذخیره تنظیمات تایمر</button></div>
+      <div class="card mascot-settings" style="margin-top:16px"><div class="card-title"><h3>🎀 استیکرهای شخصیت MOJI</h3><span>هویت بصری تو</span></div><p class="small muted" style="line-height:1.9;margin-top:0">تصویر شیت استیکر MOJI را یک‌بار از دستگاهت انتخاب کن. برنامه حالت‌های شخصیت را به‌صورت خودکار برش می‌دهد و در صفحه‌های مختلف استفاده می‌کند.</p><label class="btn btn-soft" for="mascotSheetInput">＋ انتخاب تصویر استیکرها</label><input id="mascotSheetInput" type="file" accept="image/png,image/jpeg,image/webp" class="hidden"><div id="mascotStatus" class="small muted" style="margin-top:10px">هنوز استیکر اختصاصی بارگذاری نشده است.</div><div class="mascot-preview-row" id="mascotPreviewRow"></div></div>
+      <div class="notice" style="margin-top:16px">🔐 حریم خصوصی: این نسخه اطلاعات را در مرورگر همین دستگاه نگه می‌دارد. هنوز حساب کاربری، فضای ابری و همگام‌سازی بین دستگاه‌ها فعال نشده است. فایل‌های آپلودشده نیز داخل مرورگر ذخیره می‌شوند.</div>
+      <div class="card" style="margin-top:16px"><div class="card-title"><h3>درباره MOJI STUDY</h3><span>نسخه 0.4</span></div><p class="muted small" style="line-height:2">یک فضای شخصی برای برنامه‌ریزی، ثبت ساعت مطالعه و مرور هوشمند. این نسخه اولیه برای شروع و تست تجربه کاربری ساخته شده و قابلیت توسعه به سرویس ابری و هوش مصنوعی مستقیم را دارد.</p></div>
+    </section>
+  </main>
+</div>
+<nav class="mobile-nav" id="mobileNav"><button class="active" data-page="home"><span>⌂</span><span>خانه</span></button><button data-page="planner"><span>▦</span><span>برنامه</span></button><button data-page="library"><span>▤</span><span>منابع</span></button><button data-page="ai"><span>✧</span><span>AI Studio</span></button><button data-page="flashcards"><span>▣</span><span>مرور</span></button><button data-page="progress"><span>▥</span><span>پیشرفت</span></button></nav>
+<div class="toast" id="toast"></div>
+<div class="modal-backdrop" id="modalBackdrop"><div class="modal"><div class="modal-head"><h3 id="modalTitle">افزودن</h3><button class="close" id="modalClose">×</button></div><div id="modalBody"></div></div></div>
+<script src="app.js" defer></script>
+</body>
+</html>
